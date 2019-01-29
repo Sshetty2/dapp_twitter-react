@@ -1,0 +1,144 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST Article
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+# Paths supported by the server application
+paths:
+  # /user:
+  #   get:
+  #     operationId: "model.return_pass_hash"
+  #     tags:
+  #       - "Pass Hash" 
+  #     parameters:
+  #       - name: username
+  #         in: query
+  #         type: string
+  #         description: "enter the username so that you can get this users pass hash"
+  #         required: true
+  #     summary: "returns pass hash from database based on username"
+  #     description: "Returns a pass hash"
+  #     responses:
+  #       200:
+  #         description: "Successfully returned pass hash"
+  #         schema:
+  #           type: "string"
+  #           # items:
+  #           #   properties:
+  #           #     fname:
+  #           #       type: "string"
+  #           #     lname:
+  #           #       type: "string"
+  #           #     timestamp:
+  #           #       type: "string"
+  /validate:
+    get:
+      operationId: "model.validate_pw"
+      tags:
+        - "Validate PW" 
+      parameters:
+        - name: userid
+          in: query
+          type: string
+          description: "enter the userid so that you can get validate pw with pass hash"
+          required: true
+        - name: password
+          in: query
+          type: string
+          description: "enter the username so that you can get this users pass hash"
+          required: true
+      summary: "validates username based on password and userid"
+      description: "Returns True for valid"
+      responses:
+        200:
+          description: "Successfully validated pw"
+          schema:
+            type: "string"
+            # items:
+            #   properties:
+            #     fname:
+            #       type: "string"
+            #     lname:
+            #       type: "string"
+            #     timestamp:
+            #       type: "string"
+  /create:
+    post:
+      operationId: "model.create_new_user"
+      tags:
+        - "Create new user" 
+      parameters:
+        # - in: body
+        #   name: user
+        #   description: The user to create.
+        #   schema:
+        #     type: object
+        #     required:
+        #       - userid
+        #       - password
+        #     properties:
+        #       userid:
+        #         type: string
+        #       password:
+        #         type: string
+        #       user_type:
+        #         type: string
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                userid:          # <!--- form field name
+                  type: string
+                password:    # <!--- form field name
+                  type: string
+                user_type:    # <!--- form field name
+                  type: string
+              required:
+                - name
+                - email
+      summary: "creates new user with new pass hash, username and user type "
+      description: "Returns True for valid"
+      responses:
+        200:
+          description: "Successfully created user"
+          schema:
+            type: "string"
+  /createquery:
+    post:
+      operationId: "model.create_new_user_query"
+      tags:
+        - "Create new user" 
+      parameters:
+        - name: userid
+          in: query
+          type: string
+          description: "enter the userid so that you can get validate pw with pass hash"
+          required: true
+        - name: password
+          in: query
+          type: string
+          description: "enter the username so that you can get this users pass hash"
+          required: true
+        - name: user_type
+          in: query
+          type: string
+          description: "enter the username so that you can get this users pass hash"
+          required: true      
+      summary: "creates new user with new pass hash, username and user type "
+      description: "Returns True for valid"
+      responses:
+        200:
+          description: "Successfully created user"
+          schema:
+            type: "string"
