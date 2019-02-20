@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import DropDownMenu from 'material-ui/DropDownMenu';
+import AppBar from 'material-ui/core/AppBar';
+import Button from 'material-ui/core/Button';
+import TextField from 'material-ui/core/TextField';
+import Menu from 'material-ui/core/Menu';
 import MenuItem from 'material-ui/MenuItem';
 var apiBaseUrl = "http://localhost:5000/api/";
 import axios from 'axios';
 import UploadPage from './UploadPage';
-import ButtonAppBar from './ButtonAppBar';
+import AppBar from './AppBar';
 
 
 class Login extends Component {
@@ -31,7 +31,7 @@ class Login extends Component {
              onChange = {(event,newValue) => this.setState({password:newValue})}
              />
            <br/>
-           <RaisedButton color="black" label="Submit" backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event)}/>
+           <Button color="black" label="Submit" backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event)}/>
        </div>
        </MuiThemeProvider>
     )
@@ -65,7 +65,7 @@ class Login extends Component {
                onChange = {(event,newValue) => this.setState({password:newValue})}
                />
              <br/>
-             <RaisedButton label="Submit" backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event)}/>
+             <Button label="Submit" backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event)}/>
          </div>
          </MuiThemeProvider>
       )
@@ -90,7 +90,7 @@ class Login extends Component {
                onChange = {(event,newValue) => this.setState({password:newValue})}
                />
              <br/>
-             <RaisedButton label="Submit" backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event)}/>
+             <Button label="Submit" backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event)}/>
          </div>
          </MuiThemeProvider>
       )
@@ -152,7 +152,7 @@ class Login extends Component {
                onChange = {(event,newValue) => this.setState({password:newValue})}
                />
              <br/>
-             <RaisedButton label="Submit" backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event)}/>
+             <Button label="Submit" backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event)}/>
          </div>
          </MuiThemeProvider>
       )
@@ -176,7 +176,7 @@ class Login extends Component {
                onChange = {(event,newValue) => this.setState({password:newValue})}
                />
              <br/>
-             <RaisedButton label="Submit" backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event)}/>
+             <Button label="Submit" backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event)}/>
          </div>
          </MuiThemeProvider>
       )
@@ -189,17 +189,17 @@ class Login extends Component {
     return (
       <div>
         <MuiThemeProvider>
-        <ButtonAppBar appbartitle= "Login" />
+        <AppBar appbartitle= "Login" />
         </MuiThemeProvider>
         <MuiThemeProvider>
         <div style= {{paddingRight: '5px'}}>
           <div>
           <p>Login as:</p>
           </div>
-        <DropDownMenu value={this.state.menuValue} style = {{paddingLeft:'18px'}} onChange={(event,index,value)=>this.handleMenuChange(value)}>
+        <Menu value={this.state.menuValue} style = {{paddingLeft:'18px'}} onChange={(event,index,value)=>this.handleMenuChange(value)}>
           <MenuItem value={1} primaryText="User" />
           <MenuItem value={2} primaryText="Admin" />
-        </DropDownMenu>
+        </Menu>
         </div>
         </MuiThemeProvider>
         {this.state.loginComponent}

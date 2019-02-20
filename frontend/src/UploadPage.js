@@ -8,7 +8,7 @@ import {blue500, red500, greenA200} from 'material-ui/styles/colors';
 import UploadScreen from './UploadScreen';
 import Pastfiles from './Pastfiles';
 import LoginScreen from './Loginscreen'
-import ButtonAppBar from './ButtonAppBar';
+import ButtonAppBar from './AppBar';
 import './App.css';
 
 import TweetPanels from './TweetPanels';

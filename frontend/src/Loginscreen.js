@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/core/styles/MuiThemeProvider';
+import Button from 'material-ui/core/Button';
 
 import Login from './Login';
 import Register from './Register';
@@ -17,12 +17,12 @@ class Loginscreen extends Component {
       <div>
       <MuiThemeProvider>
         <div>
-           <RaisedButton label={"Register as User"} backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event,'user')}/>
+           <Button label={"Register as User"} backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event,'user')}/>
        </div>
        </MuiThemeProvider>
        <MuiThemeProvider>
        <div>
-          <RaisedButton backgroundColor="cornflowerblue" labelColor="white" label={"Register as Admin"} style={style} onClick={(event) => this.handleClick(event,'admin')}/>
+          <Button backgroundColor="cornflowerblue" labelColor="white" label={"Register as Admin"} style={style} onClick={(event) => this.handleClick(event,'admin')}/>
       </div>
       </MuiThemeProvider>
       </div>
@@ -65,7 +65,7 @@ class Loginscreen extends Component {
         <div key="login-button">
         <MuiThemeProvider>
           <div>
-             <RaisedButton label={"Login"} backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event,userRole)}/>
+             <Button label={"Login"} backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event,userRole)}/>
          </div>
          </MuiThemeProvider>
         </div>
@@ -83,12 +83,12 @@ class Loginscreen extends Component {
         <div >
         <MuiThemeProvider>
           <div>
-             <RaisedButton label={"Register as User"} backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event,'user')}/>
+             <Button label={"Register as User"} backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event,'user')}/>
          </div>
          </MuiThemeProvider>
          <MuiThemeProvider>
          <div>
-            <RaisedButton label={"Register as Admin"} backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event,'admin')}/>
+            <Button label={"Register as Admin"} backgroundColor="cornflowerblue" labelColor="white" style={style} onClick={(event) => this.handleClick(event,'admin')}/>
         </div>
         </MuiThemeProvider>
         </div>
