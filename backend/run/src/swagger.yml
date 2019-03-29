@@ -74,7 +74,7 @@ paths:
       operationId: "model.create_new_user"
       tags:
         - "Create new user" 
-      parameters:
+      # parameters:
         # - in: body
         #   name: user
         #   description: The user to create.
@@ -90,24 +90,23 @@ paths:
         #         type: string
         #       user_type:
         #         type: string
-
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                userid:          # <!--- form field name
-                  type: string
-                password:    # <!--- form field name
-                  type: string
-                user_type:    # <!--- form field name
-                  type: string
-              required:
-                - name
-                - email
       summary: "creates new user with new pass hash, username and user type "
+      # requestBody:
+      #   required: true
+      #   content:
+      #     application/x-www-form-urlencoded:
+      #       schema:
+      #         type: object
+      #         properties:
+      #           userid:          # <!--- form field name
+      #             type: string
+      #           password:    # <!--- form field name
+      #             type: string
+      #           user_type:    # <!--- form field name
+      #             type: string
+      #         required:
+      #           - name
+      #           - email
       description: "Returns True for valid"
       responses:
         200:
