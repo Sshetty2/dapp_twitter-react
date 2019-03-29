@@ -33,7 +33,10 @@ def validate_pw(userid, password):
         return "success"
     return "password error"
 
-def create_new_user(userid, password, user_type):
+def create_new_user(useridobj):
+    userid = useridobj['userid']
+    password = useridobj['password']
+    user_type = useridobj['user_type']
     try:
         user_object = Account(username=userid)
     except:
