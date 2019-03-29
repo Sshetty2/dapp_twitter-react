@@ -7,37 +7,10 @@ consumes:
   - "application/json"
 produces:
   - "application/json"
-
 basePath: "/api"
-
 # Paths supported by the server application
 paths:
   /user:
-  #   get:
-  #     operationId: "model.return_pass_hash"
-  #     tags:
-  #       - "Pass Hash" 
-  #     parameters:
-  #       - name: username
-  #         in: query
-  #         type: string
-  #         description: "enter the username so that you can get this users pass hash"
-  #         required: true
-  #     summary: "returns pass hash from database based on username"
-  #     description: "Returns a pass hash"
-  #     responses:
-  #       200:
-  #         description: "Successfully returned pass hash"
-  #         schema:
-  #           type: "string"
-  #           # items:
-  #           #   properties:
-  #           #     fname:
-  #           #       type: "string"
-  #           #     lname:
-  #           #       type: "string"
-  #           #     timestamp:
-  #           #       type: "string"
     post:
       operationId: "model.create_new_user"
       description: "Creates a new user"
@@ -84,7 +57,7 @@ paths:
           description: "Successfully created user"
           schema:
             type: "string"
-  /validate:
+  /user/validate:
     get:
       operationId: "model.validate_pw"
       tags:
