@@ -12,7 +12,7 @@ basePath: "/api"
 
 # Paths supported by the server application
 paths:
-  # /user:
+  /user:
   #   get:
   #     operationId: "model.return_pass_hash"
   #     tags:
@@ -38,6 +38,52 @@ paths:
   #           #       type: "string"
   #           #     timestamp:
   #           #       type: "string"
+    post:
+      operationId: "model.create_new_user"
+      description: "Creates a new user"
+      tags:
+        - "Create new user" 
+      produces: 
+        - "application/json" 
+      parameters:
+      - name: useridobj
+        in: body
+        description: Pet to add to the store
+        required: true
+        schema:
+          type: object
+          required:
+            - userid
+            - password
+          properties:
+            userid:
+              type: string
+            password:
+              type: string
+            user_type:
+              type: string
+      summary: "creates new user with new pass hash, username and user type "
+      # requestBody:
+      #   required: true
+      #   content:
+      #     application/x-www-form-urlencoded:
+      #       schema:
+      #         type: object
+      #         properties:
+      #           userid:          # <!--- form field name
+      #             type: string
+      #           password:    # <!--- form field name
+      #             type: string
+      #           user_type:    # <!--- form field name
+      #             type: string
+      #         required:
+      #           - name
+      #           - email
+      responses:
+        200:
+          description: "Successfully created user"
+          schema:
+            type: "string"
   /validate:
     get:
       operationId: "model.validate_pw"
@@ -69,50 +115,6 @@ paths:
             #       type: "string"
             #     timestamp:
             #       type: "string"
-  /create:
-    post:
-      operationId: "model.create_new_user"
-      tags:
-        - "Create new user" 
-      # parameters:
-        # - in: body
-        #   name: user
-        #   description: The user to create.
-        #   schema:
-        #     type: object
-        #     required:
-        #       - userid
-        #       - password
-        #     properties:
-        #       userid:
-        #         type: string
-        #       password:
-        #         type: string
-        #       user_type:
-        #         type: string
-      summary: "creates new user with new pass hash, username and user type "
-      # requestBody:
-      #   required: true
-      #   content:
-      #     application/x-www-form-urlencoded:
-      #       schema:
-      #         type: object
-      #         properties:
-      #           userid:          # <!--- form field name
-      #             type: string
-      #           password:    # <!--- form field name
-      #             type: string
-      #           user_type:    # <!--- form field name
-      #             type: string
-      #         required:
-      #           - name
-      #           - email
-      description: "Returns True for valid"
-      responses:
-        200:
-          description: "Successfully created user"
-          schema:
-            type: "string"
   /createquery:
     post:
       operationId: "model.create_new_user_query"
