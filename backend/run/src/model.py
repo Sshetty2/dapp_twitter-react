@@ -22,7 +22,9 @@ DBNAME = "master.db"
 ## ---- REST API ENDPOINT FUNCTION CALLS --- ##
 
 
-def validate_pw(userid, password):
+def validate_pw(useridobj):
+    userid= useridobj['userid']
+    password= useridobj['password']
     
     try: 
         user_object = set_user_object(userid)
@@ -36,7 +38,10 @@ def validate_pw(userid, password):
 def create_new_user(useridobj):
     userid = useridobj['userid']
     password = useridobj['password']
-    user_type = useridobj['user_type']
+    try:
+        user_type = useridobj['user_type']
+    except:
+        user_type = 'user'
     try:
         user_object = Account(username=userid)
     except:

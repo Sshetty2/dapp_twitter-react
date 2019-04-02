@@ -21,7 +21,7 @@ paths:
       parameters:
       - name: useridobj
         in: body
-        description: Pet to add to the store
+        description: Creates a new user
         required: true
         schema:
           type: object
@@ -58,21 +58,27 @@ paths:
           schema:
             type: "string"
   /user/validate:
-    get:
+    post:
       operationId: "model.validate_pw"
       tags:
         - "Validate PW" 
+      produces: 
+        - "application/json" 
       parameters:
-        - name: userid
-          in: query
-          type: string
-          description: "enter the userid so that you can get validate pw with pass hash"
-          required: true
-        - name: password
-          in: query
-          type: string
-          description: "enter the username so that you can get this users pass hash"
-          required: true
+      - name: useridobj
+        in: body
+        description: Validate user
+        required: true
+        schema:
+          type: object
+          required:
+            - userid
+            - password
+          properties:
+            userid:
+              type: string
+            password:
+              type: string
       summary: "validates username based on password and userid"
       description: "Returns True for valid"
       responses:
@@ -80,14 +86,6 @@ paths:
           description: "Successfully validated pw"
           schema:
             type: "string"
-            # items:
-            #   properties:
-            #     fname:
-            #       type: "string"
-            #     lname:
-            #       type: "string"
-            #     timestamp:
-            #       type: "string"
   /createquery:
     post:
       operationId: "model.create_new_user_query"
