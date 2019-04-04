@@ -1,23 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Formik } from 'formik';
-import { Form } from './Form';
+import { MyForm } from './Form';
 import { userActions } from '../_actions';
-import * as Yup from "yup";
-
-const validationSchema = Yup.object({
-    name: Yup.string("Enter a name").required("Name is required"),
-    email: Yup.string("Enter your email")
-      .email("Enter a valid email")
-      .required("Email is required"),
-    password: Yup.string("")
-      .min(8, "Password must contain atleast 8 characters")
-      .required("Enter your password"),
-    confirmPassword: Yup.string("Enter your password")
-      .required("Confirm your password")
-      .oneOf([Yup.ref("password")], "Password does not match")
-  });
 
 
 class RegisterPage extends React.Component {
@@ -41,6 +26,7 @@ class RegisterPage extends React.Component {
     handleChange(event) {
         const { name, value } = event.target;
         const { user } = this.state;
+        console.log(user)
         this.setState({
             user: {
                 ...user,
@@ -50,10 +36,9 @@ class RegisterPage extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-
         this.setState({ submitted: true });
         const { user } = this.state;
+        console.log(user)
         const { dispatch } = this.props;
         if (user.firstName && user.lastName && user.userid && user.password) {
             dispatch(userActions.register(user));
@@ -65,12 +50,7 @@ class RegisterPage extends React.Component {
         const { user, submitted } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
-                 <Formik
-                    render={props => <Form {...props} />}
-                    initialValues={user}
-                    validationSchema={validationSchema}
-                    onSubmit = {this.handleSubmit}
-                />
+                 <MyForm />
             </div>
         );
     }
