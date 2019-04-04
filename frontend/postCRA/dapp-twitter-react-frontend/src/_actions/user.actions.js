@@ -3,6 +3,12 @@ import { userService } from '../_services';
 import { alertActions } from './';
 import { history } from '../_helpers';
 
+
+
+// this module  defines actions that will be used to connect with the backend API of choice. For a project that utilizes login and registration features, this aspect of the project is pretty generic. Actions speak for themselves really, they outline the actual logic underlying the interconnection with the backend Database. When actions are called from the components, they are dispatched to reducers which are in charge of designating what changes need to be made to the store. 
+
+// The actual logic that would need to be changed to connect with your API is located in src > _services > user.service.js
+
 export const userActions = {
     login,
     logout,
