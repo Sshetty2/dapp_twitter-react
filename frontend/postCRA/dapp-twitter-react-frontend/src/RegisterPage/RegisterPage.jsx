@@ -8,9 +8,8 @@ import * as Yup from "yup";
 
 const validationSchema = Yup.object({
     name: Yup.string("Enter a name").required("Name is required"),
-    email: Yup.string("Enter your email")
-      .email("Enter a valid email")
-      .required("Email is required"),
+    userid: Yup.string("Enter your userid")
+      .required("User Id is required"),
     password: Yup.string("")
       .min(8, "Password must contain atleast 8 characters")
       .required("Enter your password"),
@@ -26,7 +25,7 @@ class RegisterPage extends React.Component {
 
         this.state = {
             user: {
-                firstName: '',
+                firstName: 'Hello?',
                 lastName: '',
                 userid: '',
                 password: ''
@@ -41,6 +40,7 @@ class RegisterPage extends React.Component {
     handleChange(event) {
         const { name, value } = event.target;
         const { user } = this.state;
+        console.log('hello')
         this.setState({
             user: {
                 ...user,
@@ -70,6 +70,7 @@ class RegisterPage extends React.Component {
                     initialValues={user}
                     validationSchema={validationSchema}
                     onSubmit = {this.handleSubmit}
+                    handleChange = {this.handleChange}
                 />
             </div>
         );
