@@ -16,36 +16,8 @@ import {
   FormControlLabel,
 } from '@material-ui/core';
 // Picker
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  TimePicker,
-  DatePicker,
-} from 'material-ui-pickers';
 
 
-function TimePickerWrapper(props) {
-  const {
-    input: { name, onChange, value, ...restInput },
-    meta,
-    ...rest
-  } = props;
-  const showError =
-    ((meta.submitError && !meta.dirtySinceLastSubmit) || meta.error) &&
-    meta.touched;
-
-  return (
-    <TimePicker
-      {...rest}
-      name={name}
-      helperText={showError ? meta.error || meta.submitError : undefined}
-      error={showError}
-      inputProps={restInput}
-      onChange={onChange}
-      value={value === '' ? null : value}
-    />
-  );
-}
 
 const onSubmit = async values => {
   console.log(values['firstName'])
@@ -55,14 +27,14 @@ const onSubmit = async values => {
 };
 const validate = values => {
   const errors = {};
-  if (!values.firstName) {
-    errors.firstName = 'Required';
-  }
-  if (!values.lastName) {
-    errors.lastName = 'Required';
-  }
   if (!values.UserId) {
     errors.UserId = 'Required';
+  }
+  if (!values.Password) {
+    errors.Password = 'Required';
+  }
+  if (!values.Retype_Password) {
+    errors.Retype_Password = 'Required';
   }
   return errors;
 };
@@ -76,7 +48,7 @@ export const MyForm = () => {
       </Typography>
       <Form
         onSubmit={onSubmit}
-        initialValues={{ employed: true, stooge: 'larry' }}
+        initialValues={""}
         validate={validate}
         render={({ handleSubmit, reset, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit} noValidate>
@@ -92,6 +64,8 @@ export const MyForm = () => {
                     label="UserId"
                   />
                 </Grid>
+               
+
 
                 <Grid item xs={12}>
                   <Field

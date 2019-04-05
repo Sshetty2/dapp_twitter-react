@@ -35,7 +35,8 @@ class RegisterPage extends React.Component {
         });
     }
 
-    handleSubmit(event) {
+    handleSubmit(values) {
+        console.log(values['firstName'])
         this.setState({ submitted: true });
         const { user } = this.state;
         console.log(user)
