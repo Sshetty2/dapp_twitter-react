@@ -56,12 +56,17 @@ class RegisterPage extends React.Component {
     }
 }
 
+// 'mapStateToProps' is a function that is provided by Redux when the component tree is wrapped. It will take the entire state tree as an argument the user can then decide what elements of state will be mapped to the target components props. 
+
+
 function mapStateToProps(state) {
     const { registering } = state.registration;
     return {
         registering
     };
 }
+
+// A higher order component is created using connect and mapStateToProps. mapDispatchToProps can also be used which will map dispatch functions to props. You will simply pass both 'mapStateToProps' and 'mapDispatchToProps' to connect inorder to instantiate a new component with the added props
 
 const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
 export { connectedRegisterPage as RegisterPage };
