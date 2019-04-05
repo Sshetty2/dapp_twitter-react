@@ -50,7 +50,7 @@ class RegisterPage extends React.Component {
         const { user, submitted } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
-                 <MyForm />
+                 <MyForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
             </div>
         );
     }
