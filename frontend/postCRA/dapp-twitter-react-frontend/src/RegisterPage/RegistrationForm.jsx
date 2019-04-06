@@ -28,9 +28,10 @@ const validate = values => {
   return errors;
 };
 
-const MyForm = (props) => {
+const RegistrationForm = (props) => {
 
   const onSubmit = async values => {
+    
     let userid = values['userid']
     let password = values['password']
     let retype_password = values['retype_password']
@@ -44,18 +45,17 @@ const MyForm = (props) => {
       window.alert('Your Passwords need to match');
     }
   };
-  
+
   return (
     <div style={{ padding: 16, margin: 'auto', maxWidth: 600 }}>
       <CssBaseline />
-      <Typography variant="h5" align="center" component="h2" gutterBottom>
+      <Typography variant="h5" align="left" component="h2" gutterBottom>
         Registration Screen
       </Typography>
       <Form
         onSubmit={onSubmit}
-        initialValues={{userid: '', password: ''}}
         // validate={validate}
-        render={({ handleSubmit, reset, submitting, pristine, values }) => (
+        render={({ handleSubmit, reset, submitting, pristine, values, form }) => (
           <form onSubmit={handleSubmit} noValidate>
             <Paper style={{ padding: 16 }}>
               <Grid container alignItems="flex-start" spacing={8}>
@@ -89,7 +89,7 @@ const MyForm = (props) => {
                   <Button
                     type="button"
                     variant="contained"
-                    onClick={reset}
+                    onClick={form.reset}
                     disabled={submitting || pristine}
                   >
                     Reset
@@ -134,5 +134,5 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const connectedFormComponent = connect(null, mapDispatchToProps)(MyForm);
-export { connectedFormComponent as MyForm };
+const connectedFormComponent = connect(null, mapDispatchToProps)(RegistrationForm);
+export { connectedFormComponent as RegistrationForm };
