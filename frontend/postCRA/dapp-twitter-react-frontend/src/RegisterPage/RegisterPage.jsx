@@ -5,7 +5,7 @@ import { MyForm } from './Form';
 import { userActions } from '../_actions';
 
 
-class RegisterPage extends React.Component {
+class RegisterPage extends React.PureComponent {
     render() {
         return (
             <div className="col-md-6 col-md-offset-3">
