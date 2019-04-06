@@ -6,52 +6,10 @@ import { userActions } from '../_actions';
 
 
 class RegisterPage extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            user: {
-                firstName: '',
-                lastName: '',
-                userid: '',
-                password: ''
-            },
-            submitted: false
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleChange(event) {
-        const { name, value } = event.target;
-        const { user } = this.state;
-        console.log(user)
-        this.setState({
-            user: {
-                ...user,
-                [name]: value
-            }
-        });
-    }
-
-    handleSubmit(values) {
-        console.log(values['firstName'])
-        this.setState({ submitted: true });
-        const { user } = this.state;
-        console.log(user)
-        const { dispatch } = this.props;
-        if (user.firstName && user.lastName && user.userid && user.password) {
-            dispatch(userActions.register(user));
-        }
-    }
-
     render() {
-        const { registering  } = this.props;
-        const { user, submitted } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
-                 <MyForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+                 <MyForm />
             </div>
         );
     }
@@ -60,16 +18,9 @@ class RegisterPage extends React.Component {
 // 'mapStateToProps' is a function that is provided by Redux when the component tree is wrapped. It will take the entire state tree as an argument the user can then decide what elements of state will be mapped to the target components props. 
 
 
-function mapStateToProps(state) {
-    const { registering } = state.registration;
-    return {
-        registering
-    };
-}
-
 // A higher order component is created using connect and mapStateToProps. mapDispatchToProps can also be used which will map dispatch functions to props. You will simply pass both 'mapStateToProps' and 'mapDispatchToProps' to connect inorder to instantiate a new component with the added props
 
-const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
+const connectedRegisterPage = connect()(RegisterPage);
 export { connectedRegisterPage as RegisterPage };
 
 
