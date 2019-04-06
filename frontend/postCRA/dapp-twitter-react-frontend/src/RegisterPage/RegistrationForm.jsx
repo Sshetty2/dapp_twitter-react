@@ -11,8 +11,10 @@ import {
   Button,
   CssBaseline,
 } from '@material-ui/core';
-// Picker
 
+
+
+// TODO: UPDATE VALIDATION LOGIC
 
 const validate = values => {
   const errors = {};
@@ -63,7 +65,6 @@ const RegistrationForm = (props) => {
                   <Field
                     name="userid"
                     fullWidth
-                    required
                     component={TextField}
                     type="UserId"
                     label="UserId"
@@ -72,6 +73,7 @@ const RegistrationForm = (props) => {
                 <Grid item xs={12}>
                   <Field
                     fullWidth
+                    required
                     name="password"
                     component={TextField}
                     label="Password"
@@ -80,6 +82,7 @@ const RegistrationForm = (props) => {
                 <Grid item xs={12}>
                   <Field
                     fullWidth
+                    required
                     name="retype_password"
                     component={TextField}
                     label="Retype Password"
@@ -119,7 +122,6 @@ const RegistrationForm = (props) => {
                 </Grid>
               </Grid>
             </Paper>
-            <pre>{JSON.stringify(values, 0, 2)}</pre>
           </form>
         )}
       />
