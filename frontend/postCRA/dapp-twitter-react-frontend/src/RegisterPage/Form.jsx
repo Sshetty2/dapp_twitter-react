@@ -1,34 +1,23 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { TextField, Checkbox, Radio, Select } from 'final-form-material-ui';
+import { TextField } from 'final-form-material-ui';
+import { userActions } from '../_actions';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   Typography,
   Paper,
-  Link,
   Grid,
   Button,
   CssBaseline,
-  RadioGroup,
-  FormLabel,
-  MenuItem,
-  FormGroup,
-  FormControl,
-  FormControlLabel,
 } from '@material-ui/core';
 // Picker
 
 
-
-const onSubmit = async values => {
-  console.log(values['firstName'])
-  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-  await sleep(300);
-  window.alert(JSON.stringify(values, 0, 2));
-};
 const validate = values => {
   const errors = {};
   if (!values.UserId) {
-    errors.UserId = 'Required';
+    errors.userid = 'Required';
   }
   if (!values.Password) {
     errors.Password = 'Required';
@@ -39,7 +28,23 @@ const validate = values => {
   return errors;
 };
 
-export const MyForm = () => {
+const MyForm = (props) => {
+
+  const onSubmit = async values => {
+    let userid = values['userid']
+    let password = values['password']
+    let retype_password = values['retype_password']
+    let user = {userid, password, retype_password}
+    console.log(user)
+    if (password === retype_password) {
+      props.register(user);
+    } else {
+      const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+      await sleep(300);
+      window.alert('Your Passwords need to match');
+    }
+  };
+  
   return (
     <div style={{ padding: 16, margin: 'auto', maxWidth: 600 }}>
       <CssBaseline />
@@ -48,15 +53,15 @@ export const MyForm = () => {
       </Typography>
       <Form
         onSubmit={onSubmit}
-        initialValues={""}
-        validate={validate}
+        initialValues={{userid: '', password: ''}}
+        // validate={validate}
         render={({ handleSubmit, reset, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit} noValidate>
             <Paper style={{ padding: 16 }}>
               <Grid container alignItems="flex-start" spacing={8}>
                 <Grid item xs={12}>
                   <Field
-                    name="UserId"
+                    name="userid"
                     fullWidth
                     required
                     component={TextField}
@@ -64,13 +69,10 @@ export const MyForm = () => {
                     label="UserId"
                   />
                 </Grid>
-               
-
-
                 <Grid item xs={12}>
                   <Field
                     fullWidth
-                    name="Password"
+                    name="password"
                     component={TextField}
                     label="Password"
                   />
@@ -78,7 +80,7 @@ export const MyForm = () => {
                 <Grid item xs={12}>
                   <Field
                     fullWidth
-                    name="Retype_Password"
+                    name="retype_password"
                     component={TextField}
                     label="Retype Password"
                   />
@@ -103,8 +105,17 @@ export const MyForm = () => {
                     Submit
                   </Button>
                   {submitting && 
-                        <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <img alt= 'loading gif' src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                    }
+                </Grid>
+                <Grid item style={{ marginTop: 16 }}>
+                  <Button
+                      type = "button"
+                      variant="text"
+                      color="primary"
+                      >   
+                      <Link to="/login" className="btn btn-link">Cancel</Link>
+                  </Button>
                 </Grid>
               </Grid>
             </Paper>
@@ -116,3 +127,12 @@ export const MyForm = () => {
   );
 }
 
+
+const mapDispatchToProps = dispatch => ({
+  register(user) {
+    dispatch(userActions.register(user));
+  },
+});
+
+const connectedFormComponent = connect(null, mapDispatchToProps)(MyForm);
+export { connectedFormComponent as MyForm };
