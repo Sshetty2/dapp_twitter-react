@@ -1,9 +1,0 @@
-integrate login with database logic using axios and rest api
-
-add page/components to query user whether or not they want to view their posts or create a post
-
-The user will be navigated to a page that shows all of their current twitter posts formatted as expansion panels
-https://github.com/mui-org/material-ui/blob/master/docs/src/pages/demos/expansion-panels/SimpleExpansionPanel.js
-
-there will also be a button that opens a form dialog if the user wants to create a new post
-https://github.com/mui-org/material-ui/blob/master/docs/src/pages/demos/dialogs/FormDialog.js
