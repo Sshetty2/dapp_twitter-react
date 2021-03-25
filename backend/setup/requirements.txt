@@ -13,7 +13,7 @@ jsonschema==2.6.0
 MarkupSafe==1.1.0
 openapi-spec-validator==0.2.6
 pathlib==1.0.1
-PyYAML==5.1
+PyYAML==5.4
 requests==2.21.0
 six==1.12.0
 swagger-ui-bundle==0.0.3
